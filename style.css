@@ -103,6 +103,23 @@ button {
 
 }
 
+#infOverlay {
+    position: absolute;
+    top:0;
+
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: rgba(1, 1, 95, 0.815);
+    color: white
+
+}
+
 .copyRight {
     position: absolute;
     bottom: 0;
