@@ -1,4 +1,6 @@
 
+
+
 //Komma vidare från startskärm
 //To do: Gör en funktion som kollar ID på knappen som blir klickad och styr vilka vyer som är synliga istället.
 document.getElementById("startBtn").addEventListener('click', function () {
@@ -18,12 +20,20 @@ document.getElementById("infoReturnBtn").addEventListener('click', function () {
 
 //To do: Flytta kod här nedan vidare till en egen JS fil där Game-view koden ligger?
 
-//Keyboard Keys
+//tangentbordets variabler
+const letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","Å","Ä","Ö"];
+const keyboardDiv = document.getElementById("keyboard");
 const keyboardKeys = document.querySelectorAll('#gameScreen .keyboard p');
 
-keyboardKeys.forEach(keyboardKeys => {
+//Skapa Tangentbordets Tecken
+for (let i = 0; i < letters.length; i++) {
+    const p = document.createElement("p");
+    p.textContent = letters[i];
+    keyboardDiv.appendChild(p);
+  }
 
-    //Ge alla knappar samma styling
+//Ge alla knappar samma styling
+keyboardKeys.forEach(keyboardKeys => {
     keyboardKeys.classList.add("keyboardBtn");
 
     //Klickar man på en knapp så blir den aktiv, Dvs får klassen activeKey.
