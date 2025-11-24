@@ -22,10 +22,11 @@ gameOverButton.addEventListener('click', () => {
     //skicka tillbaka listan till 
     localStorage.setItem(KEY, JSON.stringify(highscores));
 
+    //Nollställ input
     playerNameInput.value = '';
+
+    //Visa ny highscore
     showHighscore();
-    //To do: Ta bort den här koden
-    console.log("Highscores:", highscores);
 });
 
 
@@ -44,5 +45,5 @@ function showHighscore() {
 }
 
 
-//Kör en gång innan det laddas
+//Visa highscore då sidan laddas
 showHighscore();
