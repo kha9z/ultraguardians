@@ -2,6 +2,18 @@ const gameOverButton = document.getElementById('gameOverButton');
 const playerNameInput = document.getElementById('playerName');
 const KEY = 'highscores';
 
+//Ändra knapp beroende på om spelaren skrivit något eller inte
+playerNameInput.addEventListener('input', () => {
+    if (playerNameInput.trim() === '') {
+        gameOverButton.textContent = "Återgå till Start"
+    } else { gameOverButton.textContent = "Återgå & Skicka"
+}
+
+//To do: Kanske ha kod för att hindra förändring av knappen då spelare inte har nog hög poäng för att komma med på toplistan? 
+
+});
+
+//Klick på återgå knapp
 gameOverButton.addEventListener('click', () => {
     const name = playerNameInput.value.trim();
     if (name == '') return;
