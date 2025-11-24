@@ -2,6 +2,16 @@ const gameOverButton = document.getElementById('gameOverButton');
 const playerNameInput = document.getElementById('playerName');
 const KEY = 'highscores';
 
+// Ändra knapp beroende på om spelaren skrivit något eller inte
+playerNameInput.addEventListener('input', () => {
+    if (playerNameInput.vaue === '') {
+        gameOverButton.textContent = "Återgå till Start";
+    } else {
+        gameOverButton.textContent = "Återgå & Skicka";
+    }
+});
+
+//Klick på återgå knapp
 gameOverButton.addEventListener('click', () => {
     const name = playerNameInput.value.trim();
     if (name == '') return;
@@ -22,10 +32,11 @@ gameOverButton.addEventListener('click', () => {
     //skicka tillbaka listan till 
     localStorage.setItem(KEY, JSON.stringify(highscores));
 
+    //Nollställ input
     playerNameInput.value = '';
+
+    //Visa ny highscore
     showHighscore();
-    //To do: Ta bort den här koden
-    console.log("Highscores:", highscores);
 });
 
 
@@ -44,5 +55,5 @@ function showHighscore() {
 }
 
 
-//Kör en gång innan det laddas
+//Visa highscore då sidan laddas
 showHighscore();
