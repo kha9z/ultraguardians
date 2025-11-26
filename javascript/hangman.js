@@ -78,8 +78,17 @@ function handleGuess(letter, buttonX) {
   }
   updateWordDisplay();
   updateLivesDisplay();
-  checkGameEnd();
+  checkGameEnd();  
 }
+
+function checkGameEnd() {
+  if (legs.style.visibility === "visible") {
+      document.getElementById("gameView").classList.remove("showView");
+      document.getElementById("gameView").classList.add("hideView");
+      document.getElementById("gameOverView").classList.add("showView");
+  }
+}
+
 const letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P",
                  "Q","R","S","T","U","V","W","X","Y","Z","Å","Ä","Ö"];
 
