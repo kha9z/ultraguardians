@@ -16,15 +16,14 @@ gameOverButton.addEventListener('click', () => {
     const name = playerNameInput.value.trim();
     if (name == '') return;
 
-    //Få datom och tid
+    //Få datum och tid
     const now = new Date();
     const time = now.getFullYear() + " " + now.getDate() + "/" + now.getMonth() + " " + now.getHours() + ":" + now.getMinutes();
     
-
     let highscores = JSON.parse(localStorage.getItem(KEY)) || [];
   
     const newHighscoreEntry = {
-        name, time
+        name, time, 
     };
 
     //lägg namnet till arrayen
