@@ -1,3 +1,4 @@
+//  Hämtar HTML elementen
 const startView = document.getElementById("startView");
 const gameView = document.getElementById("gameView");
 const gameOverView = document.getElementById("gameOverView");
@@ -5,6 +6,7 @@ const keyboardDiv = document.getElementById("keyboard");
 const wordDisplay = document.getElementById("wordDisplay");
 const livesDisplay = document.getElementById("livesDisplay");
 
+// byter mellan skärmana
 function showView(view) {
   startView.classList.add("hideView");
   gameView.classList.add("hideView");
@@ -14,6 +16,7 @@ function showView(view) {
   view.classList.add("showView");
 }
 
+// spelets variabler
 let chosenWord = "";
 let guessedLetters = [];
 let wrongGuesses = 0;
@@ -28,11 +31,13 @@ const hangmanParts = [
   document.getElementById("legs"),
   ]
 
+  // gömmer hangmannen i början av varje spel
   function resetHangman() {
     hangmanParts.forEach(p => p.style.visibility = "hidden"
     )
   }
 
+  // startar spelet, resettar allting
 function startGame() {
   chosenWord = wordPool[Math.floor(Math.random() * wordPool.length)];
   guessedLetters = [];
@@ -45,6 +50,7 @@ function startGame() {
   showView(gameView);
 }
 
+// visa ordet med _ _ _ _
 function updateWordDisplay() {
   let display = chosenWord
 
@@ -61,10 +67,12 @@ function updateWordDisplay() {
   wordDisplay.textContent = display;
   }
 
+  // visar hur många fel en gjort
 function updateLivesDisplay() {
   livesDisplay.textContent = `Fel: ${wrongGuesses} / 5`;
 }
 
+// det som händer när man klickar en bokstav
 function handleGuess(letter, buttonX) {
   buttonX.disabled = true;
 
@@ -116,4 +124,3 @@ document.getElementById("gameOverButton").addEventListener("click", () => {
     showView(startView);
 });
 
-// xxxx
