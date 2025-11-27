@@ -1,4 +1,4 @@
-gör koden till själva hänggubben//  Hämtar HTML elementen
+// gör koden till själva hänggubben//  Hämtar HTML elementen
 const startView = document.getElementById("startView");
 const gameView = document.getElementById("gameView");
 const gameOverView = document.getElementById("gameOverView");
