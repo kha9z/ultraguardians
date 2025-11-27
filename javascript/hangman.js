@@ -112,3 +112,5 @@ document.getElementById("startBtn").addEventListener("click", startGame);
 document.getElementById("gameOverButton").addEventListener("click", () => {
     showView(startView);
 });
+
+// xxxx
