@@ -22,7 +22,7 @@ gameOverButton.addEventListener('click', () => {
     const time = now.getFullYear() + " " + now.getDate() + "/" + now.getMonth() + " " + now.getHours() + ":" + now.getMinutes();
 
     //få Ordlängd
-    
+    const wordLength = window.wordLength;
 
     //få Score
     const playerScore = window.score;
@@ -31,12 +31,14 @@ gameOverButton.addEventListener('click', () => {
     let highscores = JSON.parse(localStorage.getItem(KEY)) || [];
   
     const newHighscoreEntry = {
-        name, playerScore, time, 
+        name, wordLength, playerScore, time, 
     };
 
     //lägg namnet till arrayen
     highscores.unshift(newHighscoreEntry);
 
+    //sortera
+    highscores.sort((a, b) => a.score - b.score);
 
     //Korta ner highscores till 5 entries
     if (highscores.length > 5) {
@@ -63,7 +65,7 @@ function showHighscore() {
 
     highscores.forEach((name) => {
         const spelare = document.createElement("li");
-        spelare.textContent = `${name.name} - ${name.playerScore}- ${name.time}`;
+        spelare.textContent = `${name.name} - ${name.wordLength} - ${name.playerScore}- ${name.time}`;
         highscoreList.appendChild(spelare);
     });
 }
