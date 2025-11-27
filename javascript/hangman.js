@@ -37,7 +37,7 @@ const hangmanParts = [
     )
   }
 
-  // startar spelet, resettar allting
+  // startar spelet och väljer ett ord, resettar allting
 function startGame() {
   chosenWord = wordPool[Math.floor(Math.random() * wordPool.length)];
   guessedLetters = [];
