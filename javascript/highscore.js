@@ -23,7 +23,7 @@ gameOverButton.addEventListener('click', () => {
     let highscores = JSON.parse(localStorage.getItem(KEY)) || [];
   
     const newHighscoreEntry = {
-        name, time, 
+        name, time, score
     };
 
     //lägg namnet till arrayen
@@ -55,7 +55,7 @@ function showHighscore() {
 
     highscores.forEach((name) => {
         const spelare = document.createElement("li");
-        spelare.textContent = `${name.name} - ${name.time}`;
+        spelare.textContent = `${name.name} - ${name.score} poäng ${name.time}`;
         highscoreList.appendChild(spelare);
     });
 }
@@ -63,3 +63,5 @@ function showHighscore() {
 
 //Visa highscore då sidan laddas
 showHighscore();
+
+showView(startView);

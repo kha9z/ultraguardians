@@ -1,3 +1,5 @@
+window.score = 0;
+
 // gör koden till själva hänggubben//  Hämtar HTML elementen
 const startView = document.getElementById("startView");
 const gameView = document.getElementById("gameView");
@@ -39,6 +41,7 @@ const hangmanParts = [
 
   // startar spelet och väljer ett ord, resettar allting
 function startGame() {
+  score = 0;
   chosenWord = wordPool[Math.floor(Math.random() * wordPool.length)];
   guessedLetters = [];
   wrongGuesses = 0;
@@ -79,9 +82,13 @@ function handleGuess(letter, buttonX) {
   if (chosenWord.includes(letter)) {
     guessedLetters.push(letter);
     buttonX.style.backgroundColor = "green";
+    score += 10;
+
   } else {
+
     wrongGuesses++;
     buttonX.style.backgroundColor = "red";
+    score -= 5;
 
     if (wrongGuesses <= 5) {
       hangmanParts[wrongGuesses - 1].style.visibility = "visible";
@@ -93,10 +100,28 @@ function handleGuess(letter, buttonX) {
 }
 
 function checkGameEnd() {
-  if (legs.style.visibility === "visible") {
-      document.getElementById("gameView").classList.remove("showView");
-      document.getElementById("gameView").classList.add("hideView");
-      document.getElementById("gameOverView").classList.add("showView");
+
+  // --- WIN CONDITION ---
+  const allLettersGuessed = chosenWord
+    .split("")
+    .every(letter => guessedLetters.includes(letter));
+
+  if (allLettersGuessed) {
+    document.getElementById("gameView").classList.remove("showView");
+    document.getElementById("gameView").classList.add("hideView");
+    document.getElementById("gameOverView").classList.add("showView");
+    document.querySelector("#gameOverView h2").textContent = 
+    `Du vann! : Poäng: ${score}`;
+
+    return;
+  }
+
+  if (wrongGuesses === 5) {
+    document.getElementById("gameView").classList.remove("showView");
+    document.getElementById("gameView").classList.add("hideView");
+    document.getElementById("gameOverView").classList.add("showView");
+    document.querySelector("#gameOverView h2").textContent = 
+    `Game over! : Poäng: ${score}`;
   }
 }
 
@@ -120,7 +145,4 @@ function createKeyboard() {
 
 document.getElementById("startBtn").addEventListener("click", startGame);
 
-document.getElementById("gameOverButton").addEventListener("click", () => {
-    showView(startView);
-});
 
