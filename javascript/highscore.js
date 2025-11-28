@@ -7,12 +7,16 @@ playerNameInput.addEventListener('input', () => {
     if (playerNameInput.value === '') {
         gameOverButton.textContent = "Återgå till Start";
     } else {
-        gameOverButton.textContent = "Återgå & Skicka";
+        gameOverButton.textContent = "Skicka Highscore";
     }
 });
 
 //Klick på återgå knapp
 gameOverButton.addEventListener('click', () => {
+
+    //Återställ knappen
+    gameOverButton.textContent = "Återgå till Start"
+    
     //Få namn
     const name = playerNameInput.value.trim();
     if (name == '') return;
