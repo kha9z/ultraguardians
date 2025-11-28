@@ -110,8 +110,8 @@ function checkGameEnd() {
     document.getElementById("gameView").classList.remove("showView");
     document.getElementById("gameView").classList.add("hideView");
     document.getElementById("gameOverView").classList.add("showView");
-    document.querySelector("#gameOverView h2").textContent = 
-    `Du vann! : Poäng: ${score}`;
+    document.querySelector("#gameOverView h2").innerHTML = 
+    `Du vann!<p>ordet var: ${chosenWord}<p>Poäng: ${score}`;
 
     return;
   }
@@ -120,8 +120,8 @@ function checkGameEnd() {
     document.getElementById("gameView").classList.remove("showView");
     document.getElementById("gameView").classList.add("hideView");
     document.getElementById("gameOverView").classList.add("showView");
-    document.querySelector("#gameOverView h2").textContent = 
-    `Game over! : Poäng: ${score}`;
+    document.querySelector("#gameOverView h2").innerHTML = 
+    `Game over!<p>ordet var: ${chosenWord}<p>Poäng: ${score}`;
   }
 }
 
