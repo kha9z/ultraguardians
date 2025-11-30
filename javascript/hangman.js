@@ -1,3 +1,6 @@
+window.score = 0;
+
+
 // gör koden till själva hänggubben//  Hämtar HTML elementen
 const startView = document.getElementById("startView");
 const gameView = document.getElementById("gameView");
@@ -21,8 +24,7 @@ let chosenWord = "";
 let guessedLetters = [];
 let wrongGuesses = 0;
 let wordLength = 0;
-export {wrongGuesses};
-export {wordLength};
+export {wrongGuesses, wordLength};
 
 const wordPool = [ "TÖNT", "TOMTE", "TOFFEL", "SAND" ]
 
@@ -83,9 +85,11 @@ function handleGuess(letter, buttonX) {
   if (chosenWord.includes(letter)) {
     guessedLetters.push(letter);
     buttonX.style.backgroundColor = "green";
+
   } else {
     wrongGuesses++;
     buttonX.style.backgroundColor = "red";
+
 
     if (wrongGuesses <= 5) {
       hangmanParts[wrongGuesses - 1].style.visibility = "visible";
@@ -97,11 +101,27 @@ function handleGuess(letter, buttonX) {
 }
 
 function checkGameEnd() {
-  if (legs.style.visibility === "visible") {
-      
-      document.getElementById("gameView").classList.remove("showView");
-      document.getElementById("gameView").classList.add("hideView");
-      document.getElementById("gameOverView").classList.add("showView");
+
+  const allLettersGuessed = chosenWord
+    .split("")
+    .every(letter => guessedLetters.includes(letter));
+
+  if (allLettersGuessed) {
+    document.getElementById("gameView").classList.remove("showView");
+    document.getElementById("gameView").classList.add("hideView");
+    document.getElementById("gameOverView").classList.add("showView");
+    document.querySelector("#gameOverView h2").innerHTML = 
+    `Du vann!<p>ordet var: ${chosenWord}<p>Poäng: ${wrongGuesses}`;
+
+    return;
+  }
+
+  if (wrongGuesses === 5) {
+    document.getElementById("gameView").classList.remove("showView");
+    document.getElementById("gameView").classList.add("hideView");
+    document.getElementById("gameOverView").classList.add("showView");
+    document.querySelector("#gameOverView h2").innerHTML = 
+    `Game over!<p>ordet var: ${chosenWord}<p>Poäng: ${wrongGuesses}`;
   }
 }
 
@@ -123,9 +143,5 @@ function createKeyboard() {
   });
 }
 
-document.getElementById("startBtn").addEventListener("click", startGame);
-
-document.getElementById("gameOverButton").addEventListener("click", () => {
-    showView(startView);
-});
+document.getElementById("startBtn").addEventListener("click", startGame); 
 
