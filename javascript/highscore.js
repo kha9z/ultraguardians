@@ -44,7 +44,7 @@ gameOverButton.addEventListener('click', () => {
     highscores.unshift(newHighscoreEntry);
 
     //sortera
-    highscores.sort((a, b) => a.score - b.score);
+    highscores.sort((a, b) => a.playerScore - b.playerScore);
 
     //Korta ner highscores till 5 entries
     if (highscores.length > 5) {
@@ -67,11 +67,12 @@ function showHighscore() {
     const highscores = JSON.parse(localStorage.getItem(KEY)) || [];
     const highscoreList = document.getElementById("highscore");
 
-    highscoreList.innerHTML = ""; // rensa listan först
+    // rensa listan först
+    highscoreList.innerHTML = "";
 
     highscores.forEach((name) => {
         const spelare = document.createElement("li");
-        spelare.innerHTML = `${name.name} &lpar; ${name.playerScore}p &rpar; ${name.time} <br> Ordlängd: ${name.wordLength}`;
+        spelare.innerHTML = `${name.name} &lpar; ${name.playerScore}p &rpar; ${name.time} <br> Ordlängd: ${name.wordL}`;
         highscoreList.appendChild(spelare);
     });
 }
