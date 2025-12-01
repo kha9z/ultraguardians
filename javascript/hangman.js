@@ -119,10 +119,10 @@ function showGameOver(won) {
 
   if (won) {
     document.querySelector("#gameOverView h2").innerHTML =
-      `Du vann!<p>ordet var: ${chosenWord}<p>Poäng: ${wrongGuesses}`;
+      `Du vann!<p>ordet var: ${chosenWord}<p>Fel gissningar: ${wrongGuesses}`;
   } else {
     document.querySelector("#gameOverView h2").innerHTML =
-      `Game over!<p>ordet var: ${chosenWord}<p>Poäng: ${wrongGuesses}`;
+      `Game over!<p>ordet var: ${chosenWord}<p>Fel gissningar: ${wrongGuesses}`;
   }
 }
 
