@@ -67,7 +67,8 @@ function showHighscore() {
     const highscores = JSON.parse(localStorage.getItem(KEY)) || [];
     const highscoreList = document.getElementById("highscore");
 
-    highscoreList.innerHTML = ""; // rensa listan först
+    // rensa listan först
+    highscoreList.innerHTML = "";
 
     highscores.forEach((name) => {
         const spelare = document.createElement("li");
